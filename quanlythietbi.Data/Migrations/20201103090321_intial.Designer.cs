@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using quanlythietbi.Data.EF;
 
 namespace quanlythietbi.Data.Migrations
 {
     [DbContext(typeof(QuanLyThietBiDbContext))]
-    partial class QuanLyThietBiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201103090321_intial")]
+    partial class intial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -285,8 +287,6 @@ namespace quanlythietbi.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CongSuat")
@@ -317,14 +317,13 @@ namespace quanlythietbi.Data.Migrations
                         .HasMaxLength(10);
 
                     b.Property<string>("MaTb")
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("NamSd")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasMaxLength(20)
-                        .HasDefaultValue(new DateTime(2020, 11, 3, 16, 14, 18, 184, DateTimeKind.Local).AddTicks(66));
+                        .HasDefaultValue(new DateTime(2020, 11, 3, 16, 3, 21, 229, DateTimeKind.Local).AddTicks(6831));
 
                     b.Property<DateTime>("NamSx")
                         .HasColumnType("datetime2");

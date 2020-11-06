@@ -15,6 +15,8 @@ namespace quanlythietbi.Data.Configurations
         {
             builder.ToTable("Products");
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).UseIdentityColumn();
+            builder.Property(x => x.MaTb).HasMaxLength(200);
             builder.Property(x => x.SerialNumber).HasMaxLength(100);
             builder.Property(x => x.Name).IsRequired().IsUnicode().HasMaxLength(100);
             builder.Property(x => x.Xuat_xu).IsUnicode().HasMaxLength(50);

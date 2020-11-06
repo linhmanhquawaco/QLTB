@@ -7,7 +7,8 @@ namespace quanlythietbi.Data.Entities
 {
     public class Product
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
+        public string MaTb { get; set; }
         public string SerialNumber { get; set; }
         public string Name { get; set; }
         public string Xuat_xu { get; set; }

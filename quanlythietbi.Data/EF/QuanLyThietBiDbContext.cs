@@ -1,13 +1,17 @@
-﻿ using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using quanlythietbi.Data.Configurations;
 using quanlythietbi.Data.Entities;
+
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace quanlythietbi.Data.EF
 {
-    public class QuanLyThietBiDbContext : DbContext
+    public class QuanLyThietBiDbContext : IdentityDbContext<AppUser,AppRole,Guid>
     {
         
         public QuanLyThietBiDbContext( DbContextOptions options) : base(options)
@@ -15,6 +19,7 @@ namespace quanlythietbi.Data.EF
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //cònigure using Fluent API
             modelBuilder.ApplyConfiguration(new AppConfigConfiguration());
             modelBuilder.ApplyConfiguration(new DonViConfiguration());
             modelBuilder.ApplyConfiguration(new NhaMayConfiguration());
@@ -22,6 +27,18 @@ namespace quanlythietbi.Data.EF
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new ProductInCategoryConfiguration());
             modelBuilder.ApplyConfiguration(new ProductInDonviConfiguration());
+
+            modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
+            modelBuilder.ApplyConfiguration(new AppUserConfiguration());
+
+            modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("AppUserClainms");
+            modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("AppUserRoles").HasKey(x=> new { x.UserId, x.RoleId});
+            modelBuilder.Entity<IdentityUserLogin<Guid>>().ToTable("AppUserLogins").HasKey(x=> x.UserId);
+            modelBuilder.Entity<IdentityRoleClaim<Guid>>().ToTable("AppRoleClainms");
+            modelBuilder.Entity<IdentityUserToken<Guid>>().ToTable("AppUserToken").HasKey(x=>x.UserId);
+            //Data seeding
+
+
             //base.OnModelCreating(modelBuilder);
         }
         public DbSet<AppConfig> AppConfigs { get; set; }
