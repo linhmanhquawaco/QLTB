@@ -171,7 +171,7 @@ namespace quanlythietbi.Data.Migrations
                     Xuat_xu = table.Column<string>(maxLength: 50, nullable: true),
                     HangSX = table.Column<string>(maxLength: 50, nullable: true),
                     NamSx = table.Column<DateTime>(nullable: false),
-                    NamSd = table.Column<DateTime>(maxLength: 20, nullable: false, defaultValue: new DateTime(2020, 11, 3, 16, 14, 18, 184, DateTimeKind.Local).AddTicks(66)),
+                    NamSd = table.Column<DateTime>(maxLength: 20, nullable: false, defaultValue: new DateTime(2020, 11, 9, 13, 55, 7, 383, DateTimeKind.Local).AddTicks(5056)),
                     Vi_tri_lap = table.Column<string>(nullable: true),
                     TenNM = table.Column<string>(nullable: true),
                     DonViID = table.Column<int>(nullable: false),

@@ -10,7 +10,7 @@ using quanlythietbi.Data.EF;
 namespace quanlythietbi.Data.Migrations
 {
     [DbContext(typeof(QuanLyThietBiDbContext))]
-    [Migration("20201103090321_intial")]
+    [Migration("20201109065507_intial")]
     partial class intial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -287,6 +287,8 @@ namespace quanlythietbi.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CongSuat")
@@ -317,13 +319,14 @@ namespace quanlythietbi.Data.Migrations
                         .HasMaxLength(10);
 
                     b.Property<string>("MaTb")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
                     b.Property<DateTime>("NamSd")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasMaxLength(20)
-                        .HasDefaultValue(new DateTime(2020, 11, 3, 16, 3, 21, 229, DateTimeKind.Local).AddTicks(6831));
+                        .HasDefaultValue(new DateTime(2020, 11, 9, 13, 55, 7, 383, DateTimeKind.Local).AddTicks(5056));
 
                     b.Property<DateTime>("NamSx")
                         .HasColumnType("datetime2");

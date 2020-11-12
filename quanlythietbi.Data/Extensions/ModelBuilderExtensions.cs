@@ -17,6 +17,38 @@ namespace quanlythietbi.Data.Extensions
                   new AppConfig() { Key = "HomeKeyWord", Value = "This is HomeKeyWord of QLTB" },
                   new AppConfig() { Key = "HomeDescription", Value = "This is HomeDescription of QLTB" }
                 );
+            modelBuilder.Entity<Category>().HasData(
+                new Category() { 
+                    Id=1,
+                    IsShowOnHome = true,
+                    ParentID = null,
+                    SortOrder = 1,
+                    Status = Status.Active }
+                );
+            modelBuilder.Entity<Category>().HasData(
+             new Category()
+             {
+                 Id = 2,
+                 IsShowOnHome = true,
+                 ParentID = null,
+                 SortOrder = 2,
+                 Status = Status.Active
+             }
+             );
+            modelBuilder.Entity<Product>().HasData(
+             new Product() 
+             {
+                 Id= 1,
+                 MaTb = "07-10",
+                 Name="máy bơm trục ngang", 
+                 HangSX= "ABC", 
+                 NamSd=DateTime.Now, 
+                 CongSuat="1000", 
+                 DoDay="100",
+                 NguonDien="380",
+                 LuuLuong="900"
+             }
+             );
 
             // any guid
             var roleId = new Guid("CA7EE66A-FE33-4985-940B-29AE960E5C9D");

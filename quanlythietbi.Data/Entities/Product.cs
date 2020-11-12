@@ -17,7 +17,7 @@ namespace quanlythietbi.Data.Entities
         public DateTime NamSd { get; set; }
         public string Vi_tri_lap { get; set; }
         public string TenNM { get; set; }
-        public int DonViID { get; set; }
+        public string DonViID { get; set; }
         public string NguonDien { get; set; }
         public string CongSuat { get; set; }
         public string DoDay { get; set; }
@@ -25,9 +25,11 @@ namespace quanlythietbi.Data.Entities
         public string LuuLuong { get; set; }
         public string HongHutXa { get; set; }
         public string VongQuay { get; set; }
+        
         public Status status { get; set; }
         public List<ProductInCategory> ProductInCategories { get; set; }
         public List<ProductInDonvi> ProductInDonvis { get; set; }
         public List<NhaMay> NhaMays { get; set; }
+        public List<ProductImage> ProductImages { get; set; }
     }
 }

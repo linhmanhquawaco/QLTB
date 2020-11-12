@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace quanlythietbi.Application
+namespace QuanLyThietBi.Ultilities
 {
     public class Class1
     {

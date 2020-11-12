@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\quanlythietbi.Application\quanlythietbi.Application.csproj" />
+    <ProjectReference Include="..\quanlythietbi.Data\quanlythietbi.Data.csproj" />
+    <ProjectReference Include="..\quanlythietbi.Utilities\quanlythietbi.Utilities.csproj" />
+    <ProjectReference Include="..\quanlythietbi.ViewModels\quanlythietbi.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>

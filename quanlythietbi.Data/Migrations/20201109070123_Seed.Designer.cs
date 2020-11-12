@@ -10,8 +10,8 @@ using quanlythietbi.Data.EF;
 namespace quanlythietbi.Data.Migrations
 {
     [DbContext(typeof(QuanLyThietBiDbContext))]
-    [Migration("20201103091418_intial")]
-    partial class intial
+    [Migration("20201109070123_Seed")]
+  public  partial class Seed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -326,7 +326,7 @@ namespace quanlythietbi.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasMaxLength(20)
-                        .HasDefaultValue(new DateTime(2020, 11, 3, 16, 14, 18, 184, DateTimeKind.Local).AddTicks(66));
+                        .HasDefaultValue(new DateTime(2020, 11, 9, 14, 1, 23, 391, DateTimeKind.Local).AddTicks(8052));
 
                     b.Property<DateTime>("NamSx")
                         .HasColumnType("datetime2");
