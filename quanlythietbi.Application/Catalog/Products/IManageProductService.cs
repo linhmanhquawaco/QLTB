@@ -1,7 +1,6 @@
-﻿
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
+using quanlythietbi.ViewModels.Catalog.ProductImage;
 using quanlythietbi.ViewModels.Catalog.Products;
-
 
 using quanlythietbi.ViewModels.Common;
 using System;
@@ -13,17 +12,24 @@ namespace quanlythietbi.Application.Catalog.Products
 {
     public interface IManageProductService
     {
-       Task <int> Create(ProductCreateRequest request);
+        Task<int> Create(ProductCreateRequest request);
 
         Task<int> Update(ProductUpdateRequest request);
 
         Task<int> Delete(int productId);
-              
-        Task<PagedResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request);
-        Task<int> AddImages(int productId, List<IFormFile> files);
-        Task<int> RemoveImages(int imageId);
-        Task<int> UpdateImages(int imageId, string caption, bool isDefault);
-        Task<List<ProductImageViewModel>> GetListImage(int productId);
 
+        Task<ProductViewModel> GetById(int productId);
+
+        Task<PagedResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request);
+
+        Task<int> AddImage(int productId, ProductImageCreateRequest request);
+
+        Task<int> RemoveImage(int imageId);
+
+        Task<int> UpdateImage(int imageId, ProductImageUpdateRequest request);
+
+        Task<List<ProductImageViewModel>> GetListImages(int productId);
+
+        Task<ProductImageViewModel> GetImageById(int imageId);
     }
 }

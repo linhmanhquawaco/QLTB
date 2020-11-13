@@ -10,23 +10,23 @@ using quanlythietbi.Data.EF;
 namespace quanlythietbi.Data.Migrations
 {
     [DbContext(typeof(QuanLyThietBiDbContext))]
-    [Migration("20201109070123_Seed")]
-  public  partial class Seed
+    [Migration("20201112161247_intial")]
+    partial class intial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.9")
+                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "5.0.0");
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -47,7 +47,7 @@ namespace quanlythietbi.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -94,6 +94,13 @@ namespace quanlythietbi.Data.Migrations
                     b.HasKey("UserId", "RoleId");
 
                     b.ToTable("AppUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = new Guid("47ebc4fe-dc48-4ab2-9ae5-0b7e25efec50"),
+                            RoleId = new Guid("ca7ee66a-fe33-4985-940b-29ae960e5c9d")
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
@@ -128,6 +135,23 @@ namespace quanlythietbi.Data.Migrations
                     b.HasKey("Key");
 
                     b.ToTable("AppConfigs");
+
+                    b.HasData(
+                        new
+                        {
+                            Key = "HomeTitle",
+                            Value = "This is home page of QLTB"
+                        },
+                        new
+                        {
+                            Key = "HomeKeyWord",
+                            Value = "This is HomeKeyWord of QLTB"
+                        },
+                        new
+                        {
+                            Key = "HomeDescription",
+                            Value = "This is HomeDescription of QLTB"
+                        });
                 });
 
             modelBuilder.Entity("quanlythietbi.Data.Entities.AppRole", b =>
@@ -141,8 +165,8 @@ namespace quanlythietbi.Data.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -153,6 +177,16 @@ namespace quanlythietbi.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AppRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("ca7ee66a-fe33-4985-940b-29ae960e5c9d"),
+                            ConcurrencyStamp = "0185f7f6-1ad1-4a82-acb5-388495337d81",
+                            Description = "Administrator role",
+                            Name = "admin",
+                            NormalizedName = "admin"
+                        });
                 });
 
             modelBuilder.Entity("quanlythietbi.Data.Entities.AppUser", b =>
@@ -175,13 +209,13 @@ namespace quanlythietbi.Data.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -216,6 +250,26 @@ namespace quanlythietbi.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AppUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("47ebc4fe-dc48-4ab2-9ae5-0b7e25efec50"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "993bfa5b-75a6-4527-a8c7-f65cef63b89b",
+                            Email = "domanhlinh1@gmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Linh",
+                            LastName = "Do",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "domanhlinh1@gmail.com",
+                            NormalizedUserName = "admin",
+                            PasswordHash = "AQAAAAEAACcQAAAAECv+ALza969VHch/JVxX1JhVcjBy/1N3Oc7ybLHEzDu390j4Xv4WGMxWTN6emPdlKQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "admin"
+                        });
                 });
 
             modelBuilder.Entity("quanlythietbi.Data.Entities.Category", b =>
@@ -223,12 +277,15 @@ namespace quanlythietbi.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<bool>("IsShowOnHome")
                         .HasColumnType("bit");
 
                     b.Property<int?>("ParentID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SortOrder")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
@@ -239,6 +296,22 @@ namespace quanlythietbi.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            IsShowOnHome = true,
+                            SortOrder = 1,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            IsShowOnHome = true,
+                            SortOrder = 2,
+                            Status = 1
+                        });
                 });
 
             modelBuilder.Entity("quanlythietbi.Data.Entities.DonVi", b =>
@@ -246,19 +319,30 @@ namespace quanlythietbi.Data.Migrations
                     b.Property<int>("DonViId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("DonViName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100)
-                        .IsUnicode(true);
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("MaDV")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.HasKey("DonViId");
 
                     b.ToTable("DonVis");
+
+                    b.HasData(
+                        new
+                        {
+                            DonViId = 1,
+                            DonViName = "XNN Hòn Gai",
+                            MaDV = "HG"
+                        });
                 });
 
             modelBuilder.Entity("quanlythietbi.Data.Entities.NhaMay", b =>
@@ -271,9 +355,9 @@ namespace quanlythietbi.Data.Migrations
 
                     b.Property<string>("NMName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100)
-                        .IsUnicode(true);
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("DonViId", "ProductId");
 
@@ -287,65 +371,56 @@ namespace quanlythietbi.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("CongSuat")
-                        .HasColumnType("nvarchar(10)")
-                        .HasMaxLength(10);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DoDay")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("DonViID")
+                    b.Property<int>("DonViId")
                         .HasColumnType("int");
 
                     b.Property<string>("HangSX")
-                        .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50)
-                        .IsUnicode(true);
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("HongHutXa")
-                        .HasColumnType("nvarchar(10)")
-                        .HasMaxLength(10);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HutSau")
-                        .HasColumnType("nvarchar(10)")
-                        .HasMaxLength(10);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LuuLuong")
-                        .HasColumnType("nvarchar(10)")
-                        .HasMaxLength(10);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MaTb")
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<DateTime>("NamSd")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
                         .HasMaxLength(20)
-                        .HasDefaultValue(new DateTime(2020, 11, 9, 14, 1, 23, 391, DateTimeKind.Local).AddTicks(8052));
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("NamSx")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100)
-                        .IsUnicode(true);
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("NguonDien")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(10)")
-                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(max)")
                         .HasDefaultValue("380");
 
                     b.Property<string>("SerialNumber")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("TenNM")
                         .HasColumnType("nvarchar(max)");
@@ -354,13 +429,15 @@ namespace quanlythietbi.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("VongQuay")
-                        .HasColumnType("nvarchar(10)")
-                        .HasMaxLength(10);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Xuat_xu")
-                        .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50)
-                        .IsUnicode(true);
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("productId")
+                        .HasColumnType("int");
 
                     b.Property<int>("status")
                         .ValueGeneratedOnAdd()
@@ -370,6 +447,62 @@ namespace quanlythietbi.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CongSuat = "1000",
+                            DoDay = "100",
+                            DonViId = 0,
+                            HangSX = "ABC",
+                            LuuLuong = "900",
+                            MaTb = "07-10",
+                            NamSd = new DateTime(2020, 11, 12, 23, 12, 46, 412, DateTimeKind.Local).AddTicks(6411),
+                            NamSx = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "máy bơm trục ngang",
+                            NguonDien = "380",
+                            productId = 1,
+                            status = 0
+                        });
+                });
+
+            modelBuilder.Entity("quanlythietbi.Data.Entities.ProductImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Caption")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("FileSize")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<bool>("IsDefault")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductImages");
                 });
 
             modelBuilder.Entity("quanlythietbi.Data.Entities.ProductInCategory", b =>
@@ -415,6 +548,21 @@ namespace quanlythietbi.Data.Migrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("DonVi");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("quanlythietbi.Data.Entities.ProductImage", b =>
+                {
+                    b.HasOne("quanlythietbi.Data.Entities.Product", "Product")
+                        .WithMany("ProductImages")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("quanlythietbi.Data.Entities.ProductInCategory", b =>
@@ -430,6 +578,10 @@ namespace quanlythietbi.Data.Migrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("quanlythietbi.Data.Entities.ProductInDonvi", b =>
@@ -445,6 +597,33 @@ namespace quanlythietbi.Data.Migrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("DonVi");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("quanlythietbi.Data.Entities.Category", b =>
+                {
+                    b.Navigation("ProductInCategories");
+                });
+
+            modelBuilder.Entity("quanlythietbi.Data.Entities.DonVi", b =>
+                {
+                    b.Navigation("NhaMays");
+
+                    b.Navigation("productInDonvis");
+                });
+
+            modelBuilder.Entity("quanlythietbi.Data.Entities.Product", b =>
+                {
+                    b.Navigation("NhaMays");
+
+                    b.Navigation("ProductImages");
+
+                    b.Navigation("ProductInCategories");
+
+                    b.Navigation("ProductInDonvis");
                 });
 #pragma warning restore 612, 618
         }

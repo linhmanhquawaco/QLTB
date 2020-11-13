@@ -13,7 +13,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "quanlythietbi.Utilities", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "quanlythietbi.ViewModels", "quanlythietbi.ViewModels\quanlythietbi.ViewModels.csproj", "{E5912135-D8F9-4F3E-BD6A-404997AB395A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "quanlythietbi.BackendApi", "quanlythietbi.BackendApi\quanlythietbi.BackendApi.csproj", "{3D76BC94-33ED-4E19-9FE6-57B236718E2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "quanlythietbi.BackendApi", "quanlythietbi.BackendApi\quanlythietbi.BackendApi.csproj", "{3D76BC94-33ED-4E19-9FE6-57B236718E2C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Infrastructure", "1.Infrastructure", "{4AD94C3C-8B6F-4F11-BB9C-5BACB457F5D2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Domain", "2.Domain", "{596DCD28-789E-48BA-BF18-A1B1DEFABEBD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Host", "3.Host", "{8EE6F68B-7A59-4561-BDEF-145C540CE7D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +54,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{07DD951D-B1ED-4CAA-A54C-6D1C18CED7FF} = {8EE6F68B-7A59-4561-BDEF-145C540CE7D6}
+		{28995C1C-7393-4BD0-BA75-3DE104AE4A1D} = {596DCD28-789E-48BA-BF18-A1B1DEFABEBD}
+		{59A9949A-8F5D-4E28-87E4-1A0F677F73EF} = {596DCD28-789E-48BA-BF18-A1B1DEFABEBD}
+		{53FB8035-3FB7-4B54-96A5-55BAB60360F1} = {4AD94C3C-8B6F-4F11-BB9C-5BACB457F5D2}
+		{E5912135-D8F9-4F3E-BD6A-404997AB395A} = {4AD94C3C-8B6F-4F11-BB9C-5BACB457F5D2}
+		{3D76BC94-33ED-4E19-9FE6-57B236718E2C} = {8EE6F68B-7A59-4561-BDEF-145C540CE7D6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {57D40DCB-21BA-4446-93EF-35058E7574E6}

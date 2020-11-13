@@ -15,6 +15,7 @@ namespace quanlythietbi.Data.Configurations
             builder.ToTable("DonVis");
             builder.HasKey(x => x.DonViId);
             builder.Property(x => x.DonViId).UseIdentityColumn();
+            builder.Property(x => x.MaDV).IsRequired().HasMaxLength(10);
             builder.Property(x => x.DonViName).IsRequired().HasMaxLength(100).IsUnicode();
         }
     }

@@ -180,7 +180,7 @@ namespace quanlythietbi.Data.Migrations
                         new
                         {
                             Id = new Guid("ca7ee66a-fe33-4985-940b-29ae960e5c9d"),
-                            ConcurrencyStamp = "e77a579b-7f81-4e22-a2a4-ee527780af55",
+                            ConcurrencyStamp = "0185f7f6-1ad1-4a82-acb5-388495337d81",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -254,7 +254,7 @@ namespace quanlythietbi.Data.Migrations
                         {
                             Id = new Guid("47ebc4fe-dc48-4ab2-9ae5-0b7e25efec50"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6f2717de-e142-4d5f-bedc-ac09938bf0cb",
+                            ConcurrencyStamp = "993bfa5b-75a6-4527-a8c7-f65cef63b89b",
                             Email = "domanhlinh1@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Linh",
@@ -262,7 +262,7 @@ namespace quanlythietbi.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "domanhlinh1@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHeoxmp+3c94P5adJOJPXZ9zzfm8PdauLfF719q2/Yxac8s40M3RKSkkInYfNUjqCQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECv+ALza969VHch/JVxX1JhVcjBy/1N3Oc7ybLHEzDu390j4Xv4WGMxWTN6emPdlKQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -325,9 +325,22 @@ namespace quanlythietbi.Data.Migrations
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("MaDV")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
                     b.HasKey("DonViId");
 
                     b.ToTable("DonVis");
+
+                    b.HasData(
+                        new
+                        {
+                            DonViId = 1,
+                            DonViName = "XNN Hòn Gai",
+                            MaDV = "HG"
+                        });
                 });
 
             modelBuilder.Entity("quanlythietbi.Data.Entities.NhaMay", b =>
@@ -364,8 +377,8 @@ namespace quanlythietbi.Data.Migrations
                     b.Property<string>("DoDay")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DonViID")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("DonViId")
+                        .HasColumnType("int");
 
                     b.Property<string>("HangSX")
                         .HasMaxLength(50)
@@ -421,6 +434,9 @@ namespace quanlythietbi.Data.Migrations
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int>("productId")
+                        .HasColumnType("int");
+
                     b.Property<int>("status")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -436,13 +452,15 @@ namespace quanlythietbi.Data.Migrations
                             Id = 1,
                             CongSuat = "1000",
                             DoDay = "100",
+                            DonViId = 0,
                             HangSX = "ABC",
                             LuuLuong = "900",
                             MaTb = "07-10",
-                            NamSd = new DateTime(2020, 11, 12, 11, 35, 6, 64, DateTimeKind.Local).AddTicks(9526),
+                            NamSd = new DateTime(2020, 11, 12, 23, 12, 46, 412, DateTimeKind.Local).AddTicks(6411),
                             NamSx = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "máy bơm trục ngang",
                             NguonDien = "380",
+                            productId = 1,
                             status = 0
                         });
                 });

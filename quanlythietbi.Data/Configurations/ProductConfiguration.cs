@@ -21,9 +21,9 @@ namespace quanlythietbi.Data.Configurations
             builder.Property(x => x.Name).IsRequired().IsUnicode().HasMaxLength(100);
             builder.Property(x => x.Xuat_xu).IsUnicode().HasMaxLength(50);
             builder.Property(x => x.HangSX).IsUnicode().HasMaxLength(50);
-            builder.Property(x => x.NamSd).HasMaxLength(20);
-            builder.Property(x => x.DonViID) ;
-            builder.Property(x => x.NguonDien).HasDefaultValue(380);
+            builder.Property(x => x.NamSd);
+            builder.Property(x => x.DonViId);
+            builder.Property(x => x.NguonDien).HasDefaultValue("380");
             builder.Property(x => x.CongSuat);
             builder.Property(x => x.HutSau);
             builder.Property(x => x.LuuLuong);

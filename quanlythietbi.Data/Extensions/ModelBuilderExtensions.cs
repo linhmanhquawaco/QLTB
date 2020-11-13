@@ -35,10 +35,19 @@ namespace quanlythietbi.Data.Extensions
                  Status = Status.Active
              }
              );
+            modelBuilder.Entity<DonVi>().HasData(
+           new DonVi()
+           {
+              DonViId =1,
+              MaDV ="HG",
+              DonViName="XNN Hòn Gai"
+           }
+           );
             modelBuilder.Entity<Product>().HasData(
              new Product() 
              {
                  Id= 1,
+                 productId=1,
                  MaTb = "07-10",
                  Name="máy bơm trục ngang", 
                  HangSX= "ABC", 
@@ -46,7 +55,9 @@ namespace quanlythietbi.Data.Extensions
                  CongSuat="1000", 
                  DoDay="100",
                  NguonDien="380",
-                 LuuLuong="900"
+                 LuuLuong="900",
+                 
+
              }
              );
 

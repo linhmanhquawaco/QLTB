@@ -8,6 +8,7 @@ namespace quanlythietbi.Data.Entities
     public class Product
     {
         public int Id { get; set; }
+        public int productId { get; set; }
         public string MaTb { get; set; }
         public string SerialNumber { get; set; }
         public string Name { get; set; }
@@ -17,7 +18,7 @@ namespace quanlythietbi.Data.Entities
         public DateTime NamSd { get; set; }
         public string Vi_tri_lap { get; set; }
         public string TenNM { get; set; }
-        public string DonViID { get; set; }
+        public int DonViId { get; set; }
         public string NguonDien { get; set; }
         public string CongSuat { get; set; }
         public string DoDay { get; set; }

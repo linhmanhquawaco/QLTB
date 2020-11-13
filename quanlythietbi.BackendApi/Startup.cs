@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using quanlythietbi.Application.Catalog.Products;
+using quanlythietbi.Application.Common;
 using quanlythietbi.Data.EF;
 using quanlythietbi.Utilities.Constains;
 
@@ -33,12 +34,14 @@ namespace quanlythietbi.BackendApi
 
             //Declare DI
             services.AddTransient<IPublicProductServicecs, PublicProductService>();
+            services.AddTransient<IManageProductService, ManageProductService>();
+            services.AddTransient<IStorageService, FileStorageService>();
+
             services.AddControllersWithViews();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger Movies Demo", Version = "v1" });
             });
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

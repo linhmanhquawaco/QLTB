@@ -18,7 +18,7 @@ namespace quanlythietbi.ViewModels.Catalog.Products
         public DateTime NamSd { get; set; }
         public string Vi_tri_lap { get; set; }
         public string TenNM { get; set; }
-        public int DonViID { get; set; }
+        public int DonViId { get; set; }
         public string NguonDien { get; set; }
         public string CongSuat { get; set; }
         public string DoDay { get; set; }
